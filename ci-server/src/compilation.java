@@ -39,14 +39,14 @@ public class compilation {
     // javac -cp lib/* src/*.java
     public static void compileGitRepo() throws IOException {
         String location = localtmpPath.getAbsolutePath() + "/ci-server";
-        System.out.println("Current st: " + location);
-        String cd = "cd ";
-        String command = "/C " + cd + location + "&" + compileCommand;
+        String command = "/C cd " + location + "&" + compileCommand;
 
         ProcessBuilder testPB = new ProcessBuilder(application, command);
         testPB.redirectErrorStream(true);
         Process p = testPB.start();
+
         System.out.println("Compiling starts ...... ");
+
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
         String log = "";
@@ -56,9 +56,10 @@ public class compilation {
                 notification.init("Compile without error");
                 break;
             }
-            log = log + "\\n\\n" + line;
+            log = log + " \n " + line;
             System.out.println(line);
         }
+        notification.init(log);
         System.out.println("Compiling done ...... ");
     }
 }
