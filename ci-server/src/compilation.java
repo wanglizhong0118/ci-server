@@ -46,15 +46,19 @@ public class compilation {
         ProcessBuilder testPB = new ProcessBuilder(application, command);
         testPB.redirectErrorStream(true);
         Process p = testPB.start();
+        System.out.println("Compiling starts ...... ");
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
+        String log = "";
         while (true) {
             line = r.readLine();
             if (line == null) {
+                notification.init("Compile without error");
                 break;
             }
+            log = log + "\\n\\n" + line;
             System.out.println(line);
         }
-        System.out.println("Compiling project ...... ");
+        System.out.println("Compiling done ...... ");
     }
 }
