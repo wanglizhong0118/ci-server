@@ -1,3 +1,5 @@
+package app;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -41,5 +43,4 @@ public class notification {
             throw new RuntimeException(e);
         }
     }
-
 }

@@ -1,3 +1,5 @@
+package app;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +48,7 @@ public class compilation {
         compilePB.redirectErrorStream(true);
         Process compileProcess = compilePB.start();
 
-        System.out.println("Compiling starts ...... ");
+        System.out.println("Compilation Started ...... ");
 
         BufferedReader resultBuffer = new BufferedReader(new InputStreamReader(compileProcess.getInputStream()));
         String line;
@@ -54,7 +56,8 @@ public class compilation {
         while (true) {
             line = resultBuffer.readLine();
             if (line == null) {
-                notification.init("Compile Finished Sucessfully");
+                notification.init("Compilation Finished Sucessfully");
+                System.out.println("Compilation Finished Sucessfully");
                 break;
             }
             log = log + " \n " + line;
