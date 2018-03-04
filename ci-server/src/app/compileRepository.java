@@ -12,9 +12,8 @@ public class compileRepository {
 
     private static String CMD = "cmd.exe";
     private static String compileCommand = " javac -cp lib/* src/app/*.java";
-    static boolean compileResult = false;
 
-    public static boolean init(File localtmpPath, String logFilePath) throws IOException {
+    public static void init(File localtmpPath, String logFilePath) throws IOException {
 
         String compileLocation = localtmpPath.getAbsolutePath() + "/ci-server";
         String command = "/C cd " + compileLocation + "&" + compileCommand;
@@ -41,15 +40,12 @@ public class compileRepository {
                 line = resultBuffer.readLine();
                 if (line == null) {
                     out.println("Compilation Finished Sucessfully");
-                    notification.init("Compilation Finished Sucessfully", logFilePath);
-                    compileResult = true;
                     break;
                 }
                 log = log + " \n " + line;
                 out.println(line);
             }
-            notification.init(log, logFilePath);
+            out.println("===============================");
         }
-        return compileResult;
     }
 }

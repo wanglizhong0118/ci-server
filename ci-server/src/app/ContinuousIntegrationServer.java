@@ -1,11 +1,7 @@
 package app;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +32,10 @@ public class ContinuousIntegrationServer extends AbstractHandler {
 
         cloneRepository.init(githubURL, localtmpPath, logFilePath);
         compileRepository.init(localtmpPath, logFilePath);
+
+        System.out.println("Done");
+
+        notification.init(logFilePath);
 
     }
 

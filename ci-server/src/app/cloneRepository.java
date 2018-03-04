@@ -12,9 +12,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 
 public class cloneRepository {
 
-    static boolean toCompile = false;
-
-    public static boolean init(String githubURL, File localtmpPath, String logFilePath) {
+    public static void init(String githubURL, File localtmpPath, String logFilePath) {
 
         try (FileWriter fw = new FileWriter(logFilePath, true);
                 BufferedWriter bw = new BufferedWriter(fw);
@@ -29,7 +27,6 @@ public class cloneRepository {
                         .call();
                 long endTime = System.currentTimeMillis();
                 long timeToClone = endTime - startTime;
-                toCompile = true;
                 out.println("Clone Done in " + timeToClone + " ms");
             } catch (GitAPIException e) {
                 System.out.println("Clone Failed ");
@@ -37,7 +34,6 @@ public class cloneRepository {
             }
         } catch (IOException e) {
         }
-        return toCompile;
     }
 
 }

@@ -25,7 +25,7 @@ public class notification {
     final private static String mailSender = "TestServerByLiz@gmail.com";
     final private static String mailReceiver = "allwingstosky@gmail.com";
 
-    public static void init(String log, String logFilePath) {
+    public static void init(String logFilePath) {
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -44,18 +44,16 @@ public class notification {
             message.setFrom(new InternetAddress(mailSender));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailReceiver));
             message.setSubject("GitRepo Compilation and Testing Result");
-            // message.setText(log);
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(log);
+            messageBodyPart.setText("Hello, world");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
 
             messageBodyPart = new MimeBodyPart();
-            String filename = "/home/manisha/file.txt";
-            DataSource source = new FileDataSource(filename);
+            DataSource source = new FileDataSource(logFilePath);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(filename);
+            messageBodyPart.setFileName(logFilePath);
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
 
