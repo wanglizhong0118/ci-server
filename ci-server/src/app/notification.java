@@ -2,13 +2,20 @@ package app;
 
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class notification {
 
@@ -18,7 +25,7 @@ public class notification {
     final private static String mailSender = "TestServerByLiz@gmail.com";
     final private static String mailReceiver = "allwingstosky@gmail.com";
 
-    public static void init(String log) {
+    public static void init(String log, String logFilePath) {
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -37,8 +44,23 @@ public class notification {
             message.setFrom(new InternetAddress(mailSender));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailReceiver));
             message.setSubject("GitRepo Compilation and Testing Result");
-            message.setText(log);
+            // message.setText(log);
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(log);
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            messageBodyPart = new MimeBodyPart();
+            String filename = "/home/manisha/file.txt";
+            DataSource source = new FileDataSource(filename);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+            message.setContent(multipart);
+
             Transport.send(message);
+
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

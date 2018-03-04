@@ -1,7 +1,11 @@
 package app;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +32,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
     public void init() throws IOException {
 
         localtmpPath = helpFunc.create_temp_path();
-        logFilePath = localtmpPath + "/logger.txt";
+        logFilePath = localtmpPath + "_logger.txt";
 
         cloneRepository.init(githubURL, localtmpPath, logFilePath);
         compileRepository.init(localtmpPath, logFilePath);

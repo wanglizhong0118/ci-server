@@ -41,14 +41,14 @@ public class compileRepository {
                 line = resultBuffer.readLine();
                 if (line == null) {
                     out.println("Compilation Finished Sucessfully");
-                    notification.init("Compilation Finished Sucessfully");
+                    notification.init("Compilation Finished Sucessfully", logFilePath);
                     compileResult = true;
                     break;
                 }
                 log = log + " \n " + line;
                 out.println(line);
             }
-            notification.init(log);
+            notification.init(log, logFilePath);
         }
         return compileResult;
     }
