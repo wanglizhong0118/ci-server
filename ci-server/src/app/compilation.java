@@ -13,7 +13,7 @@ public class compilation {
     public static File localtmpPath;
 
     final private static String CMD = "cmd.exe";
-    final private static String compileCommand = " javac -cp lib/* src/*.java";
+    final private static String compileCommand = " javac -cp lib/* src/app/*.java";
 
     public static void init() throws IOException {
         localtmpPath = helpFunc.create_temp_path();
@@ -38,7 +38,7 @@ public class compilation {
         }
     }
 
-    // javac -cp lib/* src/*.java
+    // javac -cp lib/* src/app/*.java
     public static void compileGitRepo() throws IOException {
 
         String compileLocation = localtmpPath.getAbsolutePath() + "/ci-server";
