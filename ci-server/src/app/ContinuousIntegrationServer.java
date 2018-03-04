@@ -1,6 +1,7 @@
 package app;
-import java.io.IOException;
 
+import java.io.File;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,16 +12,27 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 public class ContinuousIntegrationServer extends AbstractHandler {
 
-    final public static String githubURL = "https://github.com/wanglizhong0118/ci-server.git";
+    public static String githubURL = "https://github.com/wanglizhong0118/ci-server.git";
+    public static File localtmpPath;
+    public static String logFilePath;
 
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
-
-        compilation.init();
+        init();
         response.getWriter().println("<br/> CI job done");
+    }
+
+    public void init() throws IOException {
+
+        localtmpPath = helpFunc.create_temp_path();
+        logFilePath = localtmpPath + "/logger.txt";
+
+        cloneRepository.init(githubURL, localtmpPath, logFilePath);
+        compileRepository.init(localtmpPath, logFilePath);
+
     }
 
     public static void main(String[] args) throws Exception {
