@@ -10,8 +10,8 @@ public class compilation {
 
     public static File localtmpPath;
 
+    final private static String CMD = "cmd.exe";
     final private static String compileCommand = " javac -cp lib/* src/*.java";
-    final private static String application = "cmd.exe";
 
     public static void init() throws IOException {
         localtmpPath = helpFunc.create_temp_path();
@@ -38,28 +38,28 @@ public class compilation {
 
     // javac -cp lib/* src/*.java
     public static void compileGitRepo() throws IOException {
-        String location = localtmpPath.getAbsolutePath() + "/ci-server";
-        String command = "/C cd " + location + "&" + compileCommand;
 
-        ProcessBuilder testPB = new ProcessBuilder(application, command);
-        testPB.redirectErrorStream(true);
-        Process p = testPB.start();
+        String compileLocation = localtmpPath.getAbsolutePath() + "/ci-server";
+        String command = "/C cd " + compileLocation + "&" + compileCommand;
+
+        ProcessBuilder compilePB = new ProcessBuilder(CMD, command);
+        compilePB.redirectErrorStream(true);
+        Process compileProcess = compilePB.start();
 
         System.out.println("Compiling starts ...... ");
 
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        BufferedReader resultBuffer = new BufferedReader(new InputStreamReader(compileProcess.getInputStream()));
         String line;
         String log = "";
         while (true) {
-            line = r.readLine();
+            line = resultBuffer.readLine();
             if (line == null) {
-                notification.init("Compile without error");
+                notification.init("Compile Finished Sucessfully");
                 break;
             }
             log = log + " \n " + line;
             System.out.println(line);
         }
         notification.init(log);
-        System.out.println("Compiling done ...... ");
     }
 }

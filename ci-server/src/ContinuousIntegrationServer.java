@@ -18,10 +18,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        System.out.println(target);
-
         compilation.init();
-
         response.getWriter().println("<br/> CI job done");
     }
 

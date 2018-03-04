@@ -31,14 +31,12 @@ public class notification {
         });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(mailSender));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailReceiver));
             message.setSubject("GitRepo Compilation and Testing Result");
             message.setText(log);
             Transport.send(message);
-            System.out.println("Done");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
