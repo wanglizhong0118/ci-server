@@ -13,17 +13,17 @@ public class compileRepository {
     private static String CMD = "cmd.exe";
     private static String compileCommand = " javac -cp lib/* src/app/*.java";
 
-    public static void init(File localtmpPath, String logFilePath) throws IOException {
+    public static void init(File localtmpPath, String logFilePath) {
 
         String compileLocation = localtmpPath.getAbsolutePath() + "/ci-server";
         String command = "/C cd " + compileLocation + "&" + compileCommand;
 
         try (FileWriter fw = new FileWriter(logFilePath, true);
                 BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw)) {
+                PrintWriter pWriter = new PrintWriter(bw)) {
 
-            out.println("===============================");
-            out.println("Compilation Started ...... ");
+            pWriter.println("===============================");
+            pWriter.println("Compilation Started ...... ");
 
             long startTime = System.currentTimeMillis();
             ProcessBuilder compilePB = new ProcessBuilder(CMD, command);
@@ -31,7 +31,7 @@ public class compileRepository {
             Process compileProcess = compilePB.start();
             long endTime = System.currentTimeMillis();
             long timeToCompile = endTime - startTime;
-            out.println("Complation Done in " + timeToCompile + " ms");
+            pWriter.println("Complation Done in " + timeToCompile + " ms");
 
             BufferedReader resultBuffer = new BufferedReader(new InputStreamReader(compileProcess.getInputStream()));
             String line;
@@ -39,13 +39,15 @@ public class compileRepository {
             while (true) {
                 line = resultBuffer.readLine();
                 if (line == null) {
-                    out.println("Compilation Finished Sucessfully");
+                    pWriter.println("Compilation Finished Sucessfully");
                     break;
                 }
                 log = log + " \n " + line;
-                out.println(line);
+                pWriter.println(line);
             }
-            out.println("===============================");
+            pWriter.println("===============================");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

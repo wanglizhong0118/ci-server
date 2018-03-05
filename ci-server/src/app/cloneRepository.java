@@ -13,18 +13,17 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 public class cloneRepository {
 
     public static void init(String githubURL, File localtmpPath, String logFilePath) {
-
         try (FileWriter fw = new FileWriter(logFilePath, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             try {
                 out.println(LocalDateTime.now());
                 out.println("Downloading project ...... ");
-                out.println("Source Address: " + githubURL);
-                out.println("Local Destination: " + localtmpPath);
+                out.println("Source Github project: " + githubURL);
                 long startTime = System.currentTimeMillis();
-                Git.cloneRepository().setURI(githubURL).setDirectory(localtmpPath).setBranch("refs/heads/master")
-                        .call();
+                Git git = Git.cloneRepository().setURI(githubURL).setDirectory(localtmpPath)
+                        .setBranch("refs/heads/master").call();
+                git.close();
                 long endTime = System.currentTimeMillis();
                 long timeToClone = endTime - startTime;
                 out.println("Clone Done in " + timeToClone + " ms");
@@ -33,6 +32,8 @@ public class cloneRepository {
                 e.printStackTrace();
             }
         } catch (IOException e) {
+            System.out.println("Unable to record data ");
+            e.printStackTrace();
         }
     }
 

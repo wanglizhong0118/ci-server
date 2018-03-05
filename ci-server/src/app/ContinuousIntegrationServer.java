@@ -13,7 +13,8 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 public class ContinuousIntegrationServer extends AbstractHandler {
 
     public static String githubURL = "https://github.com/wanglizhong0118/ci-server.git";
-    public static File localtmpPath;
+    public static String tempDir = "C://Users/allwi/Documents/GitHub/ci-server-temp";
+    public static File localTempFile;
     public static String logFilePath;
 
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
@@ -27,11 +28,11 @@ public class ContinuousIntegrationServer extends AbstractHandler {
 
     public void init() throws IOException {
 
-        localtmpPath = helpFunc.create_temp_path();
-        logFilePath = localtmpPath + "_logger.txt";
+        localTempFile = helpFunc.create_temp_path(tempDir);
+        logFilePath = localTempFile + "_logger.txt";
 
-        cloneRepository.init(githubURL, localtmpPath, logFilePath);
-        compileRepository.init(localtmpPath, logFilePath);
+        cloneRepository.init(githubURL, localTempFile, logFilePath);
+        compileRepository.init(localTempFile, logFilePath);
 
         System.out.println("Done");
 
