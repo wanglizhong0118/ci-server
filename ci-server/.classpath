@@ -6,13 +6,12 @@
 	<classpathentry kind="lib" path="lib/jetty-all-7.0.2.v20100331.jar"/>
 	<classpathentry kind="lib" path="lib/jsch-0.1.54.jar"/>
 	<classpathentry kind="lib" path="lib/json-simple-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jgit-4.10.0.201712302008-r.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.25.jar"/>
 	<classpathentry kind="lib" path="lib/mail.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="lib/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jgit-4.10.0.201712302008-r.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

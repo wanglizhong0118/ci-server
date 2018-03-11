@@ -7,12 +7,12 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import app.cloneRepository;
 import app.helpFunc;
 
-class test_cloneRepository {
+public class test_cloneRepository {
 
     String test_githubURL = "https://github.com/wanglizhong0118/ci-server.git";
     String test_githubURL_fake = "https://github.com/wanglizhong0118/notExistRepo.git";

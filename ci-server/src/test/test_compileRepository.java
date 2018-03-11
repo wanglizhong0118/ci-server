@@ -1,9 +1,14 @@
 package test;
 
-import java.io.File;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-class test_compileRepository {
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.Test;
+
+public class test_compileRepository {
 
     File localtmpPath_exists = new File("C://Users/allwi/Documents/GitHub/ci-server-temp-unittest");
     File localtmpPath_not_exists = new File("C://Users/allwi/Documents/GitHub/ci-server-temp-unittest-fake");
@@ -12,7 +17,8 @@ class test_compileRepository {
     String logFilePath_not_exists = "C://Users/allwi/Documents/GitHub/ci-server-temp-unittest-fake/test_log.txt";
 
     @Test
-    public void test_compile() {
+    public void test_Doit() throws IOException {
+        assertTrue(true);
 
     }
 
