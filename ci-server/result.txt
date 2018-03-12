@@ -1,7 +1,8 @@
-sö 2018.03.11 at 04:16:29 em CET
+sö 2018.03.11 at 05:07:24 em CET
 Total runned tests: 9
 Total failed tests: 2
-Total cost time: 7093 milesecond
+Total cost time: 6075 milesecond
+
 Failed TestCase(TestClass): test_FalseIsTrue(test.test_doTest)
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)

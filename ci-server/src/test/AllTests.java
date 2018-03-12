@@ -9,6 +9,5 @@ import org.junit.runners.Suite.SuiteClasses;
 public class AllTests {
 
     public void doTest() {
-        System.out.println("hellow");
     }
 }

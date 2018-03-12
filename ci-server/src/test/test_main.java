@@ -32,8 +32,8 @@ public class test_main {
         resultExporter.write("Total runned tests: " + totalRunTests + NEWLINE);
         resultExporter.write("Total failed tests: " + failedUnittest + NEWLINE);
         resultExporter.write("Total cost time: " + totalTime + " milesecond" + NEWLINE);
+        resultExporter.write(NEWLINE);
         for (Failure failure : result.getFailures()) {
-
             resultExporter.write("Failed TestCase(TestClass): " + failure.getDescription() + NEWLINE);
             StringWriter errors = new StringWriter();
             failure.getException().printStackTrace(new PrintWriter(errors));
