@@ -47,6 +47,7 @@ public class compileRepository {
             }
             pWriter.println("===============================");
         } catch (IOException e) {
+            System.out.println("certain error happen");
             e.printStackTrace();
         }
     }

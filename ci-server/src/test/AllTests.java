@@ -8,6 +8,4 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ test_helpFunc.class, test_cloneRepository.class, test_compileRepository.class, test_doTest.class })
 public class AllTests {
 
-    public void doTest() {
-    }
 }

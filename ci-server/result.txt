@@ -1,7 +1,7 @@
-sö 2018.03.11 at 05:07:24 em CET
-Total runned tests: 9
+må 2018.03.12 at 10:45:15 em CET
+Total runned tests: 10
 Total failed tests: 2
-Total cost time: 6075 milesecond
+Total cost time: 7959 milesecond
 
 Failed TestCase(TestClass): test_FalseIsTrue(test.test_doTest)
 java.lang.AssertionError

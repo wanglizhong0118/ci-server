@@ -32,7 +32,6 @@ public class cloneRepository {
                 e.printStackTrace();
             }
         } catch (IOException e) {
-            System.out.println("Unable to record data ");
             e.printStackTrace();
         }
     }
